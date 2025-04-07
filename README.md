@@ -2,40 +2,39 @@
 
 ## Objetivo
 
-Explorar una alternativa sencilla y reproducible para calcular la legibilidad de textos en español en R, sin dependencias externas complejas. Para ello se reune una serie de funciones para el análisis de legibilidad en textos en español.
+Explorar una alternativa sencilla y reproducible para calcular la legibilidad de textos en español en R, sin dependencias externas complejas. Para ello se reune una serie de funciones para la extracción de características del texto.
 
 ## Funcionalidades
 
-- Conteo de sílabas, palabras, oraciones y párrafos
-- Segmentación silábica
-- Cálculo de tres índices de legibilidad en español:
-  - Fernández Huerta
-  - Szigriszt Pazos
-  - Gutiérrez de Polini
+- `get_words(text)`: Extrae y normaliza palabras desde un texto.
+- `count_words(text)`: Cuenta la cantidad de palabras.
+- `count_sentences(text)`: Estima la cantidad de oraciones en un texto.
+- `get_syllables(word)`: Segmenta palabras en sílabas usando reglas heurísticas del español.
+- `count_syllables(word)`: Cuenta la cantidad de sílabas en una palabra.
+- `index_fh(text)`: Calcula el índice de Fernández-Huerta, una métrica tradicional de legibilidad para español.
+- `analyze_complex_syllables(text)`: Detecta palabras que contienen sílabas complejas (con ataque, coda o ambos).
 
 ## Índices de legibilidad
 ### 📐 Fernández Huerta
 
-> `FH = 206.84 - (0.60 × P) - (1.02 × F)`
+> `FH = 206.84 - 0.60 × P - 1.02 × F`
 
 Donde:
 - `P` = promedio de sílabas por cada 100 palabras
-- `F` = promedio de palabras por oración
+- `F` = promedio de frases por cada 100 palabras
 
 ---
 
-### 📐 Szigriszt Pazos
+### 📐 Índice de perspicuidad de Szigriszt-Pazos
 
-> `SZ = 206.835 - (62.3 × (sílabas / palabras)) - (palabras / oraciones)`
+> `SZ = 206.835 - 62.3 × S/P - P/F`
+
+Donde:
+- `S` = número de sílabas en el texto
+- `P` = número de palabras en el texto
+- `F` = número de oraciones en el texto
 
 ---
-
-### 📐 Gutiérrez de Polini
-
-> `GP = 95.2 - 0.167 × (sílabas / palabras × 100) - 0.129 × (palabras / oraciones)`
-
----
-
 
 
 ## Licencia
